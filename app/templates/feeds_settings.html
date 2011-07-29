@@ -5,6 +5,10 @@
         for (var i=0; i<7; i++)
             document.getElementById("d" + i).checked = true;
     }
+
+    function digestChange() {
+        document.getElementById('digest_custom').style.display = (document.getElementById('d').value == 'c') ? '' : 'none';
+    }
 </script>
 
     <div style="height:14px;">
@@ -29,7 +33,7 @@
       <tr><td>Last crawled:</td><td>{{ feed.date_last_crawled.date|date }}, {{ feed.date_last_crawled.time|time }} </td></tr>
       <tr><td><br></td></tr>
       <tr><td>Digest:</td><td>
-          <select name="d" size="0" onChange="javascript:digestChange()">
+          <select id="d" name="d" size="0" onChange="javascript:digestChange()">
               <option value="i" label="Instant" {% ifequal feed.digest_days 0 %}selected=selected{% endifequal %}>Instant</option>
               <option value="c" label="Custom" {% if feed.digest_days %}selected=selected{% endif %}>Custom</option>
           </select>
